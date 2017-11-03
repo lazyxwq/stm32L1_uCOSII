@@ -47,8 +47,8 @@
 *********************************************************************************************************
 */
 
-#define  BSP_GPIOD_LED1                        DEF_BIT_08
-#define  BSP_GPIOD_LED2                        DEF_BIT_01
+#define  BSP_GPIOD_LED1                        DEF_BIT_01//DEF_BIT_08
+#define  BSP_GPIOD_LED2                        DEF_BIT_02//DEF_BIT_01
 
 
 /*
