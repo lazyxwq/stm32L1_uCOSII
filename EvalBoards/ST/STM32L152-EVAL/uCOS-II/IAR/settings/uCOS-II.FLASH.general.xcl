@@ -1,0 +1,15 @@
+"E:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\bin\armproc.dll" 
+
+"E:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\bin\armstlink2.dll" 
+
+"C:\Users\xwq\Downloads\Software(2016-09-13)\EvalBoards\ST\STM32L152-EVAL\uCOS-II\IAR\FLASH\Exe\OS.out" 
+
+--plugin "E:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\bin\armbat.dll" 
+
+--device_macro "E:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\config\debugger\ST\STM32L1xx.dmac" 
+
+--flash_loader "E:\Program Files (x86)\IAR Systems\Embedded Workbench 8.0\arm\config\flashloader\ST\FlashSTM32L15xx8.board" 
+
+
+
+

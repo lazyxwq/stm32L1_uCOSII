@@ -1,0 +1,1 @@
+--cpu Cortex-M3 -g --apcs=interwork -I C:\Keil\ARM\RV31\Inc -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\ST\STM32L1xx --list ".\Lst\cstartup.lst" --xref -o ".\Obj\cstartup.o" --depend ".\Obj\cstartup.d" "..\..\BSP\KeilMDK\cstartup.s"
