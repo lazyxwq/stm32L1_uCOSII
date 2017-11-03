@@ -54,7 +54,64 @@
 
 #include "usart_1.h"
 
+#define USE_PRINTF
 
+#ifdef USE_PRINTF
+/**
+  * @brief  Retargets the C library printf function to the USART.
+  * @param  ch: the char to be send.
+  * @param  *f:
+  * @retval the char that send out.
+  */
+#if 0
+int fputc(int ch, FILE *f) 
+{
+  /* Place your implementation of fputc here */
+  /* e.g. write a character to the USART */
+
+  /* Loop until the end of transmission */
+  while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET)
+  {
+  }
+  USART_SendData(USART1, (uint8_t) ch);
+
+  return ch;
+}
+#endif
+
+int fputc(int ch,FILE *f)
+{
+  USART1->SR;  //USART_GetFlagStatus(USART1, USART_FLAG_TC) 解决第一个字符发送失败的问题
+  //一个一个发送字符
+  USART_SendData(USART1, (unsigned char) ch);
+  //等待发送完成
+  while(USART_GetFlagStatus(USART1,USART_FLAG_TC)!=SET);
+
+  return(ch);
+}
+/**
+  * @brief  Retargets the C library printf function to the USART.
+  * @param  *f
+  * @retval the char that received.
+  */
+int fgetc(FILE *f) 
+{
+  int ch;
+  while (USART_GetFlagStatus(USART1, USART_FLAG_RXNE) == RESET)
+  {
+  }
+  ch = USART_ReceiveData(USART1);
+
+  while (USART_GetFlagStatus(USART1, USART_FLAG_TC) == RESET)
+  {
+  }
+  USART_SendData(USART1, (uint8_t) ch);
+  return ch;
+}
+#else
+#define printf  
+#define scanf
+#endif
 
 #define SD_SPI                           SPI2
 #define SD_SPI_CLK                       RCC_APB1Periph_SPI2
@@ -229,6 +286,7 @@ static void UsartTask (void *p_arg)
 	while(1)
 	{
 		OSTimeDlyHMSM(0, 0, 0, 2000);  
+                printf("hello world\n");
 		usart1_sendstring("usart1 task ok! \r\n");
 		usart3_sendstring("usart3 task ok! \r\n");
 	}
